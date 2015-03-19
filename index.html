@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Cocos2d-JS Lite</title> 
+    <script type="text/javascript" src="cocos2d-js-v3.3-lite.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/resource.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/titleScene.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/playgameScene.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/answerScene.js" charset="UTF-8"></script>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script type="text/javascript">
+          window.onload = function(){
+              cc.game.onStart = function(){
+                  // ----- 画面にあわせてリサイズする
+                  cc.view.adjustViewPort(true);
+                  cc.view.setDesignResolutionSize(800, 450, cc.ResolutionPolicy.SHOW_ALL);
+                  cc.view.resizeWithBrowserSize(true);
+
+                  // ----- 最初のシーンを読み込む
+                  cc.LoaderScene.preload(g_resources, function () {
+                      cc.director.runScene(new TitleScene());
+                  }, this);
+              };
+              cc.game.run("gameCanvas");
+          };
+    </script>
+</body>
+</html>
